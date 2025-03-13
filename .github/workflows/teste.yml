@@ -1,0 +1,14 @@
+name: "Teste Execucao em matriz"
+
+on:
+  issues:
+    type: [opened, reopened]
+
+jobs: 
+
+  message-starting-process:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Message
+        run: echo "Starting process ..."
+  
