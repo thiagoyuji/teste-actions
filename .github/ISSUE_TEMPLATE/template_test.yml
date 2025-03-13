@@ -1,0 +1,12 @@
+name: Template teste
+description: Testes leitura de arquivos e matrizes.
+title: Teste
+labels: ["Teste"]
+body:
+  - type: input
+    id: Area
+    attributes:
+      label: "Area"
+      description: Uma area qualquer de uma empresa.
+    validations:
+      required: true
