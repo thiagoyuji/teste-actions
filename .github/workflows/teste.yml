@@ -11,4 +11,33 @@ jobs:
     steps:
       - name: Message
         run: echo "Starting process ..."
+
+  extracting-area-from-issue:
+    runs-on: ubuntu-latest
+    outputs:
+      area: ${{ steps.parser.outputs.area }}
+    steps:
+      - name: Parsing to Json
+        id: parser
+        uses: peter-murray/issue-forms-body-parser@v2.0.0
+        with: 
+          issue_id: ${{ github.event.issue.number }}
+          separator: "###"
+          label_marker_start: ">>"
+          label_marker_end: "<<"
+
+      - name: Print issue body
+        run: echo "${{ toJson(steps.parser.outputs.payload) }}"        
+
+  extracting-file-configuration-information:
+    runs-on: ubuntu-latest
+    needs: [extracting-area-from-issue]
+    outputs:
+      area: ${{ steps.extract.outputs.area }}
+    steps:
+      - name: Extract
+        id: extract
+        uses: thiagoyuji/teste-actions/.github/actions/extract-config-info@main
+        with:
+          area: "temp"
   
