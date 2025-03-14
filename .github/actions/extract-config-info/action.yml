@@ -18,8 +18,8 @@ runs:
 
     - name: Install Dependency JQ
       run: |
-        sudo apt update
-        sudo apt install -y jq
+        apt update
+        apt install -y jq
 
     - name: Extract configure information
       id: extract
