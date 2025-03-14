@@ -6,7 +6,7 @@ body:
   - type: input
     id: Area
     attributes:
-      label: "Area"
+      label: ">>Area<<"
       description: Uma area qualquer de uma empresa.
     validations:
       required: true
