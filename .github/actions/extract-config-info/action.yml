@@ -9,6 +9,8 @@ outputs:
     value: ${{ steps.extract.outputs.area }}
   zonas_online:
     value: ${{ steps.extract.outputs.zonas_online }}
+  funcionalidades:
+    value: ${{ steps.extract.outputs.funcionalidades }}
 
 runs:
 
