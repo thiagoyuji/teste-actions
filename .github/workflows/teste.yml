@@ -57,4 +57,5 @@ jobs:
       - name: Print information
         run: |
           echo "area: ${{ needs.extracting-file-configuration-information.outputs.area }}"
+          echo "zonas_online: ${{ needs.extracting-file-configuration-information.outputs.zonas_online }}"
   
