@@ -2,8 +2,7 @@
   "area": "vendas",
   "zonas": {
     "dev": {
-      "online": [1, 2, 3],
-      "batch": [4]
+      "online": [1, 2, 3]
     }
   }
 }
