@@ -112,8 +112,12 @@ jobs:
   define-zones-for-processing:
     runs-on: ubuntu-latest
     needs: [extracting-area-from-issue, extracting-file-configuration-information, extract-parameters-process-exception]
+    outputs:
+      zonas_online: ${{ steps.define.outputs.zonas_online }}
+      zonas_batch: ${{ steps.define.outputs.zonas_batch }}
     steps:
       - name: Define
+        id: define
         run: |
           if [ "${{ needs.extract-parameters-process-exception.outputs.e_excecao }}" == "false" ]; then
               echo "zonas_online=${{ needs.extracting-file-configuration-information.outputs.zonas_online }}" >> $GITHUB_ENV
