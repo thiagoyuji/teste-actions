@@ -15,7 +15,7 @@ jobs:
   extracting-area-from-issue:
     runs-on: ubuntu-latest
     outputs:
-      area: ${{ steps.parser.outputs.area }}
+      area: ${{ steps.extract_area.outputs.area }}
     steps:
       - name: Parsing to Json
         id: parser
@@ -33,7 +33,10 @@ jobs:
           echo "area=$AREA" >> $GITHUB_OUTPUT
 
       - name: Print issue body
-        run: echo "${{ toJson(steps.parser.outputs.payload) }}"        
+        run: echo "${{ toJson(steps.parser.outputs.payload) }}"
+
+      - name: Print Area
+        run: echo "${{ toJson(steps.extract_area.outputs.area) }}"
 
   extracting-file-configuration-information:
     runs-on: ubuntu-latest
