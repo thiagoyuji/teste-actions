@@ -2,7 +2,7 @@ name: "Teste Execucao em matriz"
 
 on:
   issues:
-    type: [opened]
+    types: [opened]
 
 jobs: 
 
