@@ -103,7 +103,7 @@ jobs:
 
   process-online:
     runs-on: ubuntu-latest
-    needs: [extracting-area-from-issue, extracting-file-configuration-information]
+    needs: [extracting-area-from-issue, extracting-file-configuration-information, change-parameters-process-exception]
     if: ${{ needs.extracting-area-from-issue.outputs.tipo == 'online' }}
     strategy:
       matrix:
@@ -116,7 +116,7 @@ jobs:
 
   process-batch:
     runs-on: ubuntu-latest
-    needs: [extracting-area-from-issue, extracting-file-configuration-information]
+    needs: [extracting-area-from-issue, extracting-file-configuration-information, change-parameters-process-exception]
     if: ${{ needs.extracting-area-from-issue.outputs.tipo == 'batch' }}
     strategy:
       matrix:
