@@ -2,6 +2,8 @@
 
 AREA=$1
 
+echo "$AREA"
+
 FILE_PATH="$AREA.json"
 
 if [ ! -f "$FILE_PATH" ]; then
