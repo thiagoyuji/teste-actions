@@ -31,4 +31,3 @@ runs:
       run: |
         chmod +x extract-config-info.sh
         ./extract-config-info.sh "${{ inputs.area }}"
-        echo "ex: ${{ steps.extract.outputs.excecoes }}"
