@@ -29,6 +29,10 @@ FUNCIONALIDADES=$(jq -c '.funcionalidades' "$FILE_PATH")
 echo "funcionalidades=$FUNCIONALIDADES" >> "$GITHUB_OUTPUT"
 
 PROCESSOS_EXCECOES=$(jq -c '.processar_excecoes' "$FILE_PATH")
-echo "excecoes=$PROCESSOS_EXCECOES" >> "$GITHUB_OUTPUT"
+if [ -z "$PROCESSOS_EXCECOES" ]; then
+  echo "excecoes=[]" >> "$GITHUB_OUTPUT"
+else
+  echo "excecoes=$PROCESSOS_EXCECOES" >> "$GITHUB_OUTPUT"
+fi
 
 
