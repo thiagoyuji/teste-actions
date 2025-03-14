@@ -13,6 +13,8 @@ outputs:
     value: ${{ steps.extract.outputs.zonas_batch }}
   funcionalidades:
     value: ${{ steps.extract.outputs.funcionalidades }}
+  excecoes:
+    value: ${{ steps.extract.outputs.excecoes }}
 
 runs:
 
