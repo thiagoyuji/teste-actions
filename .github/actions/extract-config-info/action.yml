@@ -21,5 +21,6 @@ runs:
       shell: bash
       working-directory: ${{ github.workspace }}
       run: |
+        apt install jq
         chmod +x extract-config-info.sh
         ./extract-config-info.sh "${{ inputs.area }}"
