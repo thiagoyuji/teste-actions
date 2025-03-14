@@ -59,4 +59,22 @@ jobs:
         run: |
           echo "area: ${{ needs.extracting-file-configuration-information.outputs.area }}"
           echo "zonas_online: ${{ needs.extracting-file-configuration-information.outputs.zonas_online }}"
+
+  process:
+    runs-on: ubuntu-latest
+    needs: extracting-file-configuration-information
+    strategy:
+      matrix:
+        zone: ${{ fromJson(needs.extracting-file-configuration-information.outputs.zonas_online) }}
+    steps:
+      - name: Processing
+        run: |
+          echo "Area: ${{ needs.extracting-file-configuration-information.outputs.area }}"
+          echo "Processing zone: ${{ matrix.zone }}"
+
+  message-ending-process:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Message
+        run: echo "Ending process ..."
   
