@@ -12,6 +12,6 @@ if [ ! -f "$FILE_PATH" ]; then
   exit 1
 fi
 
-AREA=$(jq -r '.area' "$FILE_PATH")
+AREA_FROM_FILE=$(jq -r '.area' "$FILE_PATH")
 
-echo "area=$AREA" >> "$GITHUB_OUTPUT"
+echo "area=$AREA_FROM_FILE" >> "$GITHUB_OUTPUT"
