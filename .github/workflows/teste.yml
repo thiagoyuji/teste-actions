@@ -44,6 +44,7 @@ jobs:
     outputs:
       area: ${{ steps.extract.outputs.area }}
       zonas_online: ${{ steps.extract.outputs.zonas_online }}
+      funcionalidades: ${{ steps.extract.outputs.funcionalidades }}
     steps:
       - name: Extract
         id: extract
@@ -59,10 +60,12 @@ jobs:
         run: |
           echo "area: ${{ needs.extracting-file-configuration-information.outputs.area }}"
           echo "zonas_online: ${{ needs.extracting-file-configuration-information.outputs.zonas_online }}"
+          echo "funcionalidades: ${{ needs.extracting-file-configuration-information.outputs.funcionalidades }}"
 
   show-date:
     runs-on: ubuntu-latest
     needs: extracting-file-configuration-information
+    if: contains(needs.extracting-file-configuration-information.outputs.funcionalidades, 'show-date')
     steps:
       - name: Show date
         run: date +"%Y-%m-%d"
@@ -70,6 +73,7 @@ jobs:
   show-time:
     runs-on: ubuntu-latest
     needs: extracting-file-configuration-information
+    if: contains(needs.extracting-file-configuration-information.outputs.funcionalidades, 'show-time')
     steps:
       - name: Show time
         run: date +"%T"
