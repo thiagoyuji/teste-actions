@@ -10,3 +10,10 @@ body:
       description: Uma area qualquer de uma empresa.
     validations:
       required: true
+  - type: input
+    id: Tipo
+    attributes:
+      label: ">>Tipo<<"
+      description: Tipo online ou batch.
+    validations:
+      required: true
