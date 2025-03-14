@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
 
+if [ -z "$1" ]; then
+  echo "Error: Area argument is missing."
+  exit 1
+fi
+
 AREA=$1
 
 FILE_PATH="$AREA.json"
 
 if [ ! -f "$FILE_PATH" ]; then
-  echo "File not found!"
+  echo "Error: File '$FILE_PATH' not found."
   exit 1
 fi
 
 AREA=$(jq -r '.area' "$FILE_PATH")
-echo "area=$AREA" >> $GITHUB_OUTPUT
+
+echo "area=$AREA" >> "$GITHUB_OUTPUT"
