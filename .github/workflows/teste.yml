@@ -46,4 +46,12 @@ jobs:
         uses: thiagoyuji/teste-actions/.github/actions/extract-config-info@main
         with:
           area: ${{ needs.extracting-area-from-issue.outputs.area }}
+
+  print-information:
+    runs-on: ubuntu-latest
+    needs: extracting-file-configuration-information
+    steps:
+      - name: Print information
+        run: |
+          echo "area: ${{ needs.extracting-file-configuration-information.outputs.area }}"
   
