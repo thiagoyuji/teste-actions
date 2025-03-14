@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       area: ${{ steps.extract_area.outputs.area }}
-      tipo: ${{ steps.extract_area.outputs.area }}
+      tipo: ${{ steps.extract_area.outputs.tipo }}
     steps:
       - name: Parsing to Json
         id: parser
@@ -52,6 +52,7 @@ jobs:
         uses: thiagoyuji/teste-actions/.github/actions/extract-config-info@main
         with:
           area: ${{ needs.extracting-area-from-issue.outputs.area }}
+          tipo: ${{ needs.extracting-area-from-issue.outputs.tipo }}
 
   print-information:
     runs-on: ubuntu-latest
