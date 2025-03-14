@@ -36,20 +36,7 @@ echo "zonas_batch=$DEV_BATCH_ZONES" >> "$GITHUB_OUTPUT"
 FUNCIONALIDADES=$(jq -c '.funcionalidades' "$FILE_PATH")
 echo "funcionalidades=$FUNCIONALIDADES" >> "$GITHUB_OUTPUT"
 
-EXCEPTION_EXISTS=$(jq --arg job "$TRABALHO" '.["processar_excecoes"][] | select(.trabalho == $job)' "$FILE_PATH")
+PROCESSOS_EXCECOES=$(jq -c '.processar_excecoes' "$FILE_PATH")
+echo "excecoes=$PROCESSOS_EXCECOES" >> "$GITHUB_OUTPUT"
 
-if [ -z "$EXCEPTION_EXISTS" ]; then
 
-  echo "e_excecao=false" >> "$GITHUB_OUTPUT"
-  
-else
-
-  echo "e_excecao=true" >> "$GITHUB_OUTPUT"
-
-  EXCEPTION_DEV_ONLINE_ZONES=$(echo "$EXCEPTION_EXISTS" | jq -c '.zonas.dev.online')
-  echo "zonas_online_excecao=$DEV_ONLINE_ZONES" >> "$GITHUB_OUTPUT"
-  
-  EXCEPTION_DEV_BATCH_ZONES=$(echo "$EXCEPTION_EXISTS" | jq -c '.zonas.dev.batch')
-  echo "zonas_batch_excecao=$DEV_BATCH_ZONES" >> "$GITHUB_OUTPUT"
-
-fi
