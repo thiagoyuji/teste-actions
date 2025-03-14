@@ -5,15 +5,7 @@ if [ -z "$1" ]; then
   
 fi
 
-if [ -z "$2" ]; then
-
-  echo "Error: Trabalho argument is missing."
-  exit 1
-  
-fi
-
 AREA=$1
-TRABALHO=$2
 
 FILE_PATH="$AREA.json"
 
