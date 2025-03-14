@@ -2,7 +2,8 @@
   "area": "sales",
   "zonas": {
     "dev": {
-      "online": [1, 2, 3]
+      "online": [1, 2, 3],
+      "batch": [4]
     }
   },
   "funcionalidades": [ "show-time" ]
