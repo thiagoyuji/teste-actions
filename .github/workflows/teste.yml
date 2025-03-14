@@ -43,6 +43,7 @@ jobs:
     needs: extracting-area-from-issue
     outputs:
       area: ${{ steps.extract.outputs.area }}
+      zonas_online: ${{ steps.extract.outputs.zonas_online }}
     steps:
       - name: Extract
         id: extract
