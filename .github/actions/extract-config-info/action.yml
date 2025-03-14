@@ -17,4 +17,6 @@ runs:
       id: extract
       shell: bash
       working-directory: ${{ github.workspace }}
-      run: ./extract-config-info.sh ${{ inputs.area }}
+      run: |
+        ls -lHari
+        ./extract-config-info.sh ${{ inputs.area }}
