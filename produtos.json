@@ -1,9 +1,9 @@
 {
-  "area": "produtos",
+  "area": "products",
   "zonas": {
     "dev": {
       "online": [5, 6, 7, 8, 9]
     }
   },
-  "funcionalidades": [ "mostrar-data" ]
+  "funcionalidades": [ "show-date" ]
 }
