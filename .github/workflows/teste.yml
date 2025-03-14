@@ -71,6 +71,23 @@ jobs:
           echo "funcionalidades: ${{ needs.extracting-file-configuration-information.outputs.funcionalidades }}"
           echo "excecoes: ${{ needs.extracting-file-configuration-information.outputs.excecoes }}"
 
+  change-parameters-process-exception:
+    runs-on: ubuntu-latest
+    needs: extracting-file-configuration-information
+    steps:
+      - name: Change
+        run: |
+          EXCEPTION_EXISTS=$(jq --arg job "$TRABALHO" '.["processar_excecoes"][] | select(.trabalho == $job)' "$FILE_PATH")
+          if [ -z "$EXCEPTION_EXISTS" ]; then
+              echo "e_excecao=false" >> "$GITHUB_OUTPUT"
+          else
+              echo "e_excecao=true" >> "$GITHUB_OUTPUT"
+              EXCEPTION_DEV_ONLINE_ZONES=$(echo "$EXCEPTION_EXISTS" | jq -c '.zonas.dev.online')
+              echo "zonas_online=$DEV_ONLINE_ZONES" >> "$GITHUB_OUTPUT"
+              EXCEPTION_DEV_BATCH_ZONES=$(echo "$EXCEPTION_EXISTS" | jq -c '.zonas.dev.batch')
+              echo "zonas_batch=$DEV_BATCH_ZONES" >> "$GITHUB_OUTPUT"
+          fi          
+
   show-date:
     runs-on: ubuntu-latest
     needs: extracting-file-configuration-information
