@@ -105,11 +105,4 @@ jobs:
         run: |
           echo "Area: ${{ needs.extracting-file-configuration-information.outputs.area }}"
           echo "Processing zone: ${{ matrix.zone }}"
-
-  message-ending-process:
-    runs-on: ubuntu-latest
-    if: ${{ needs.process-online.result == 'success' || needs.process-batch.result == 'success' }}
-    steps:
-      - name: Message
-        run: echo "Ending process ..."
   
