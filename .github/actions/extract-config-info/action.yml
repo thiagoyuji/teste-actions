@@ -16,4 +16,5 @@ runs:
     - name: Extract configure information
       id: extract
       shell: bash
-      run: ${{ github.workspace }}/extract-config-info.sh ${{ inputs.area }}
+      working-directory: ${{ github.workspace }}
+      run: ./extract-config-info.sh ${{ inputs.area }}
