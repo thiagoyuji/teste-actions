@@ -15,5 +15,5 @@ fi
 AREA_FROM_FILE=$(jq -r '.area' "$FILE_PATH")
 echo "area=$AREA_FROM_FILE" >> "$GITHUB_OUTPUT"
 
-DEV_ONLINE_ZONES=$(jq -r '.zonas.dev.online[]' "$FILE_PATH" | paste -sd, -)
-echo "zonas_online: $DEV_ONLINE_ZONES" >> "$GITHUB_OUTPUT"
+DEV_ONLINE_ZONES=$(jq -c '.zonas.dev.online' "$FILE_PATH")
+echo "zonas_online=$DEV_ONLINE_ZONES" >> "$GITHUB_OUTPUT"
