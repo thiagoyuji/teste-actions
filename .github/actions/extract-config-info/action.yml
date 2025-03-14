@@ -7,6 +7,8 @@ inputs:
 outputs:
   area: 
     value: ${{ steps.extract.outputs.area }}
+  zonas:
+    value: ${{ steps.extract.outputs.zonas_online }}
 
 runs:
 
