@@ -25,4 +25,7 @@ runs:
       run: |
         chmod +x extract-config-info.sh
         ./extract-config-info.sh "${{ inputs.area }}"
-        echo "${{steps.extract.outputs.zonas_online}}"
+
+    - name: Print output variables
+        run: |
+          echo "zonas_online=${{ steps.extract.outputs.zonas_online }}"
