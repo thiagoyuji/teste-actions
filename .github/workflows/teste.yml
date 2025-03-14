@@ -60,6 +60,20 @@ jobs:
           echo "area: ${{ needs.extracting-file-configuration-information.outputs.area }}"
           echo "zonas_online: ${{ needs.extracting-file-configuration-information.outputs.zonas_online }}"
 
+  show-date:
+    runs-on: ubuntu-latest
+    needs: extracting-file-configuration-information
+    steps:
+      - name: Show date
+        run: date +"%Y-%m-%d"
+
+  show-time:
+    runs-on: ubuntu-latest
+    needs: extracting-file-configuration-information
+    steps:
+      - name: Show time
+        run: date +"%T"
+
   process:
     runs-on: ubuntu-latest
     needs: extracting-file-configuration-information
