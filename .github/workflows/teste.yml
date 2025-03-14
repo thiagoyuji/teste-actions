@@ -45,6 +45,7 @@ jobs:
     outputs:
       area: ${{ steps.extract.outputs.area }}
       zonas_online: ${{ steps.extract.outputs.zonas_online }}
+      zonas_batch: ${{ steps.extract.outputs.zonas_batch }}
       funcionalidades: ${{ steps.extract.outputs.funcionalidades }}
     steps:
       - name: Extract
