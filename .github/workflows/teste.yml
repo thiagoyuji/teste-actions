@@ -52,7 +52,6 @@ jobs:
         uses: thiagoyuji/teste-actions/.github/actions/extract-config-info@main
         with:
           area: ${{ needs.extracting-area-from-issue.outputs.area }}
-          tipo: ${{ needs.extracting-area-from-issue.outputs.tipo }}
 
   print-information:
     runs-on: ubuntu-latest
@@ -62,6 +61,7 @@ jobs:
         run: |
           echo "area: ${{ needs.extracting-file-configuration-information.outputs.area }}"
           echo "zonas_online: ${{ needs.extracting-file-configuration-information.outputs.zonas_online }}"
+          echo "zonas_batch: ${{ needs.extracting-file-configuration-information.outputs.zonas_batch }}"
           echo "funcionalidades: ${{ needs.extracting-file-configuration-information.outputs.funcionalidades }}"
 
   show-date:
@@ -99,7 +99,7 @@ jobs:
     if: ${{ needs.extracting-area-from-issue.outputs.tipo == 'batch' }}
     strategy:
       matrix:
-        zone: ${{ fromJson(needs.extracting-file-configuration-information.outputs.zonas_online) }}
+        zone: ${{ fromJson(needs.extracting-file-configuration-information.outputs.zonas_batch) }}
     steps:
       - name: Processing
         run: |
