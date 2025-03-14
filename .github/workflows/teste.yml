@@ -78,7 +78,9 @@ jobs:
       - name: Change
         run: |
           EXCEPTION_EXISTS=$(echo "${{ needs.extracting-file-configuration-information.outputs.excecoes }}" | jq --arg job "$TRABALHO" 'map(select(.trabalho == $job))')
+          echo "ee $EXCEPTION_EXISTS"
           if [ ! -z "$EXCEPTION_EXISTS" ]; then
+              echo "entrei"
               EXCEPTION_DEV_ONLINE_ZONES=$(echo "$EXCEPTION_EXISTS" | jq -c '.zonas.dev.online')
               echo "zonas_online=$DEV_ONLINE_ZONES" >> "$GITHUB_OUTPUT"
               EXCEPTION_DEV_BATCH_ZONES=$(echo "$EXCEPTION_EXISTS" | jq -c '.zonas.dev.batch')
