@@ -1,8 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 AREA=$1
-
-echo "$AREA"
 
 FILE_PATH="$AREA.json"
 
