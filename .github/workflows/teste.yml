@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       area: ${{ steps.extract_area.outputs.area }}
+      tipo: ${{ steps.extract_area.outputs.area }}
     steps:
       - name: Parsing to Json
         id: parser
@@ -32,11 +33,11 @@ jobs:
           AREA=$(echo '${{ steps.parser.outputs.payload }}' | jq -r '.Area')
           echo "area=$AREA" >> $GITHUB_OUTPUT
 
+          TIPO=$(echo '${{ steps.parser.outputs.payload }}' | jq -r '.Tipo')
+          echo "tipo=$TIPO" >> $GITHUB_OUTPUT
+
       - name: Print issue body
         run: echo "${{ toJson(steps.parser.outputs.payload) }}"
-
-      - name: Print Area
-        run: echo "${{ steps.extract_area.outputs.area }}"
 
   extracting-file-configuration-information:
     runs-on: ubuntu-latest
@@ -78,9 +79,23 @@ jobs:
       - name: Show time
         run: date +"%T"
 
-  process:
+  process-online:
     runs-on: ubuntu-latest
-    needs: extracting-file-configuration-information
+    needs: [extracting-area-from-issue, extracting-file-configuration-information]
+    if: ${{ needs.extracting-area-from-issue.outputs.tipo == 'online' }}
+    strategy:
+      matrix:
+        zone: ${{ fromJson(needs.extracting-file-configuration-information.outputs.zonas_online) }}
+    steps:
+      - name: Processing
+        run: |
+          echo "Area: ${{ needs.extracting-file-configuration-information.outputs.area }}"
+          echo "Processing zone: ${{ matrix.zone }}"
+
+  process-batch:
+    runs-on: ubuntu-latest
+    needs: [extracting-area-from-issue, extracting-file-configuration-information]
+    if: ${{ needs.extracting-area-from-issue.outputs.tipo == 'batch' }}
     strategy:
       matrix:
         zone: ${{ fromJson(needs.extracting-file-configuration-information.outputs.zonas_online) }}
@@ -92,7 +107,7 @@ jobs:
 
   message-ending-process:
     runs-on: ubuntu-latest
-    needs: process
+    if: ${{ jobs.process-online.result == 'success' || jobs.process-batch.result == 'success' }}
     steps:
       - name: Message
         run: echo "Ending process ..."
