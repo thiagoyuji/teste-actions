@@ -18,5 +18,8 @@ echo "area=$AREA_FROM_FILE" >> "$GITHUB_OUTPUT"
 DEV_ONLINE_ZONES=$(jq -c '.zonas.dev.online' "$FILE_PATH")
 echo "zonas_online=$DEV_ONLINE_ZONES" >> "$GITHUB_OUTPUT"
 
+DEV_BATCH_ZONES=$(jq -c '.zonas.dev.batch' "$FILE_PATH")
+echo "zonas_batch=$DEV_BATCH_ZONES" >> "$GITHUB_OUTPUT"
+
 FUNCIONALIDADES=$(jq -c '.funcionalidades' "$FILE_PATH")
 echo "funcionalidades=$FUNCIONALIDADES" >> "$GITHUB_OUTPUT"
