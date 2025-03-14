@@ -113,18 +113,18 @@ jobs:
     runs-on: ubuntu-latest
     needs: [extracting-area-from-issue, extracting-file-configuration-information, extract-parameters-process-exception]
     outputs:
-      zonas_online: ${{ steps.define.outputs.zonas_online }}
-      zonas_batch: ${{ steps.define.outputs.zonas_batch }}
+      zonas_online_process: ${{ steps.define.outputs.zonas_online_process }}
+      zonas_batch_process: ${{ steps.define.outputs.zonas_batch_process }}
     steps:
       - name: Define
         id: define
         run: |
           if [ "${{ needs.extract-parameters-process-exception.outputs.e_excecao }}" == "false" ]; then
-              echo "zonas_online=${{ needs.extracting-file-configuration-information.outputs.zonas_online }}" >> $GITHUB_ENV
-              echo "zonas_batch=${{ needs.extracting-file-configuration-information.outputs.zonas_batch }}" >> $GITHUB_ENV
+              echo "zonas_online_process=${{ needs.extracting-file-configuration-information.outputs.zonas_online }}" >> "$GITHUB_OUTPUT"
+              echo "zonas_batch_process=${{ needs.extracting-file-configuration-information.outputs.zonas_batch }}" >> "$GITHUB_OUTPUT"
           else
-              echo "zones_online=${{ needs.extract-parameters-process-exception.outputs.zonas_online_exception }}" >> $GITHUB_ENV
-              echo "zonas_batch=${{ needs.extract-parameters-process-exception.outputs.zonas_batch_excecao }}" >> $GITHUB_ENV
+              echo "zonas_online_process=${{ needs.extract-parameters-process-exception.outputs.zonas_online_exception }}" >> "$GITHUB_OUTPUT"
+              echo "zonas_batch_process=${{ needs.extract-parameters-process-exception.outputs.zonas_batch_excecao }}" >> "$GITHUB_OUTPUT"
           fi
 
   process-online:
@@ -133,7 +133,7 @@ jobs:
     if: ${{ needs.extracting-area-from-issue.outputs.tipo == 'online' }}
     strategy:
       matrix:
-        zone: ${{ fromJson(needs.define-zones-for-processing.outputs.zonas_online) }}
+        zone: ${{ fromJson(needs.define-zones-for-processing.outputs.zonas_online_process) }}
     steps:
       - name: Processing
         run: |
@@ -146,7 +146,7 @@ jobs:
     if: ${{ needs.extracting-area-from-issue.outputs.tipo == 'batch' }}
     strategy:
       matrix:
-        zone: ${{ fromJson(needs.define-zones-for-processing.outputs.zonas_batch) }}
+        zone: ${{ fromJson(needs.define-zones-for-processing.outputs.zonas_batch_process) }}
     steps:
       - name: Processing
         run: |
