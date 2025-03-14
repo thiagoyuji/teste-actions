@@ -36,7 +36,7 @@ jobs:
         run: echo "${{ toJson(steps.parser.outputs.payload) }}"
 
       - name: Print Area
-        run: echo "${{ toJson(steps.extract_area.outputs.area) }}"
+        run: echo "${{ steps.extract_area.outputs.area }}"
 
   extracting-file-configuration-information:
     runs-on: ubuntu-latest
