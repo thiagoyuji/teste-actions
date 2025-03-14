@@ -17,6 +17,7 @@ jobs:
     outputs:
       area: ${{ steps.extract_area.outputs.area }}
       tipo: ${{ steps.extract_area.outputs.tipo }}
+      trabalho: ${{ steps.extract_area.outputs.trabalho }}
     steps:
       - name: Parsing to Json
         id: parser
@@ -36,6 +37,9 @@ jobs:
           TIPO=$(echo '${{ steps.parser.outputs.payload }}' | jq -r '.Tipo')
           echo "tipo=$TIPO" >> $GITHUB_OUTPUT
 
+          TRABALHO=$(echo '${{ steps.parser.outputs.payload }}' | jq -r '.Trabalho')
+          echo "trabalho=$TRABALHO" >> $GITHUB_OUTPUT
+
       - name: Print issue body
         run: echo "${{ toJson(steps.parser.outputs.payload) }}"
 
@@ -47,6 +51,7 @@ jobs:
       zonas_online: ${{ steps.extract.outputs.zonas_online }}
       zonas_batch: ${{ steps.extract.outputs.zonas_batch }}
       funcionalidades: ${{ steps.extract.outputs.funcionalidades }}
+      excecoes: ${{ steps.extract.outputs.excecoes }}
     steps:
       - name: Extract
         id: extract
@@ -64,6 +69,7 @@ jobs:
           echo "zonas_online: ${{ needs.extracting-file-configuration-information.outputs.zonas_online }}"
           echo "zonas_batch: ${{ needs.extracting-file-configuration-information.outputs.zonas_batch }}"
           echo "funcionalidades: ${{ needs.extracting-file-configuration-information.outputs.funcionalidades }}"
+          echo "excecoes: ${{ needs.extracting-file-configuration-information.outputs.excecoes }}"
 
   show-date:
     runs-on: ubuntu-latest
