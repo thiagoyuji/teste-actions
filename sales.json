@@ -1,9 +1,9 @@
 {
-  "area": "vendas",
+  "area": "sales",
   "zonas": {
     "dev": {
       "online": [1, 2, 3]
     }
   },
-  "funcionalidades": [ "mostrar-horario" ]
+  "funcionalidades": [ "show-time" ]
 }
