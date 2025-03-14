@@ -22,4 +22,4 @@ runs:
       working-directory: ${{ github.workspace }}
       run: |
         chmod +x extract-config-info.sh
-        ./extract-config-info.sh ${{ inputs.area }}
+        ./extract-config-info.sh "${{ inputs.area }}"
