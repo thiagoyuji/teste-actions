@@ -4,5 +4,6 @@
     "dev": {
       "online": [1, 2, 3]
     }
-  }
+  },
+  "funcionalidades": [ "mostrar-horario" ]
 }
