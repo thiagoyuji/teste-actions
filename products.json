@@ -11,13 +11,13 @@
     {
       "trabalho": "tab1",
       "dev": {
-        "online": [11, 12],
+        "online": [11, 12]
       }
     },
     {
       "trabalho": "tab2",
       "dev": {
-        "batch": [13, 14],
+        "batch": [13, 14]
       }
     }
   ]
