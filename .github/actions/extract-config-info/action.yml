@@ -13,12 +13,11 @@ runs:
   using: composite
   steps:
 
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
     - name: Extract configure information
       id: extract
       shell: bash
       working-directory: ${{ github.workspace }}
-      run: |
-        cd ..
-        pwd
-        ls
-        ./extract-config-info.sh ${{ inputs.area }}
+      run: ./extract-config-info.sh ${{ inputs.area }}
