@@ -4,7 +4,7 @@ AREA=$1
 
 FILE_PATH="$AREA.json"
 
-if [ ! -f "$FILE_PATH"]; then
+if [ ! -f "$FILE_PATH" ]; then
   echo "File not found!"
   exit 1
 fi
