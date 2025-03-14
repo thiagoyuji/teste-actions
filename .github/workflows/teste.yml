@@ -107,7 +107,8 @@ jobs:
 
   message-ending-process:
     runs-on: ubuntu-latest
-    if: ${{ jobs.process-online.result == 'success' || jobs.process-batch.result == 'success' }}
+    needs: [process-online, process-batch]
+    if: ${{ needs.process-online.result == 'success' || needs.process-batch.result == 'success' }}
     steps:
       - name: Message
         run: echo "Ending process ..."
