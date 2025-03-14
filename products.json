@@ -7,4 +7,18 @@
     }
   },
   "funcionalidades": [ "show-date" ]
+  "processar_excecoes": [
+    {
+      "trabalho": "tab1",
+      "dev": {
+        "online": [11, 12],
+      }
+    },
+    {
+      "trabalho": "tab2",
+      "dev": {
+        "batch": [13, 14],
+      }
+    }
+  ]
 }
