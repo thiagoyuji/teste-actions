@@ -6,7 +6,7 @@
       "batch": [10]
     }
   },
-  "funcionalidades": [ "show-date" ]
+  "funcionalidades": [ "show-date" ],
   "processar_excecoes": [
     {
       "trabalho": "tab1",
