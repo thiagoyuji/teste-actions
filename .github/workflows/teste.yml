@@ -85,9 +85,9 @@ jobs:
           EXCEPTION_EXISTS=$(echo '${{ needs.extracting-file-configuration-information.outputs.excecoes }}' | jq --arg job "${{ needs.extracting-area-from-issue.outputs.trabalho }}" 'map(select(.trabalho == $job))')
           if [ "$EXCEPTION_EXISTS" != "[]" ]; then
               echo "e_excecao=true" >> "$GITHUB_OUTPUT"
-              EXCEPTION_DEV_ONLINE_ZONES=$(echo "$EXCEPTION_EXISTS" | jq -c '.[0].zonas.dev.online')
+              EXCEPTION_DEV_ONLINE_ZONES=$(echo "$EXCEPTION_EXISTS" | jq -c '.[0].zonas.dev.online // []')
               echo "zonas_online_excecao=$EXCEPTION_DEV_ONLINE_ZONES" >> "$GITHUB_OUTPUT"
-              EXCEPTION_DEV_BATCH_ZONES=$(echo "$EXCEPTION_EXISTS" | jq -c '.[0].zonas.dev.batch')
+              EXCEPTION_DEV_BATCH_ZONES=$(echo "$EXCEPTION_EXISTS" | jq -c '.[0].zonas.dev.batch // []')
               echo "zonas_batch_excecao=$EXCEPTION_DEV_BATCH_ZONES" >> "$GITHUB_OUTPUT"
           else
               echo "e_excecao=false" >> "$GITHUB_OUTPUT"
@@ -123,7 +123,7 @@ jobs:
               echo "zonas_online_process=${{ needs.extracting-file-configuration-information.outputs.zonas_online }}" >> "$GITHUB_OUTPUT"
               echo "zonas_batch_process=${{ needs.extracting-file-configuration-information.outputs.zonas_batch }}" >> "$GITHUB_OUTPUT"
           else
-              echo "zonas_online_process=${{ needs.extract-parameters-process-exception.outputs.zonas_online_exception }}" >> "$GITHUB_OUTPUT"
+              echo "zonas_online_process=${{ needs.extract-parameters-process-exception.outputs.zonas_online_excecao }}" >> "$GITHUB_OUTPUT"
               echo "zonas_batch_process=${{ needs.extract-parameters-process-exception.outputs.zonas_batch_excecao }}" >> "$GITHUB_OUTPUT"
           fi
 
