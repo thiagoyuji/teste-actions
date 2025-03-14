@@ -17,9 +17,10 @@ runs:
       uses: actions/checkout@v4
 
     - name: Install Dependency JQ
+      shell: bash
       run: |
-        apt update
-        apt install -y jq
+        sudo apt update
+        sudo apt install -y jq
 
     - name: Extract configure information
       id: extract
