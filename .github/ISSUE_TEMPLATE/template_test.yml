@@ -17,3 +17,8 @@ body:
       description: Tipo online ou batch.
     validations:
       required: true
+  - type: input
+    id: Trabalho
+    attributes:
+      label: ">>Trabalho<<"
+      description: Tipo online ou batch.
