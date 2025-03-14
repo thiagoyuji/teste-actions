@@ -3,8 +3,6 @@ name: "Extract configure information for area"
 inputs:
   area:
     required: true
-  tipo:
-    required: true
 
 outputs:
   area: 
@@ -28,4 +26,4 @@ runs:
       working-directory: ${{ github.workspace }}
       run: |
         chmod +x extract-config-info.sh
-        ./extract-config-info.sh "${{ inputs.area }}" "${{ inputs.tipo }}"
+        ./extract-config-info.sh "${{ inputs.area }}"
