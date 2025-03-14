@@ -20,4 +20,6 @@ runs:
       id: extract
       shell: bash
       working-directory: ${{ github.workspace }}
-      run: ./extract-config-info.sh ${{ inputs.area }}
+      run: |
+        chmod +x extract-config-info.sh
+        ./extract-config-info.sh ${{ inputs.area }}
