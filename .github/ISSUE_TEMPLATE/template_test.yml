@@ -21,4 +21,4 @@ body:
     id: Trabalho
     attributes:
       label: ">>Trabalho<<"
-      description: Tipo online ou batch.
+      description: Nome do trabalho.
