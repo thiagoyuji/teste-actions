@@ -73,11 +73,11 @@ jobs:
 
   change-parameters-process-exception:
     runs-on: ubuntu-latest
-    needs: extracting-file-configuration-information
+    needs: [extracting-area-from-issue, extracting-file-configuration-information]
     steps:
       - name: Change
         run: |
-          EXCEPTION_EXISTS=$(echo '${{ needs.extracting-file-configuration-information.outputs.excecoes }}' | jq --arg job "$TRABALHO" 'map(select(.trabalho == $job))')
+          EXCEPTION_EXISTS=$(echo '${{ needs.extracting-file-configuration-information.outputs.excecoes }}' | jq --arg job "${{ needs.extracting-area-from-issue.outputs.trabalho }}" 'map(select(.trabalho == $job))')
           echo "ee $EXCEPTION_EXISTS"
           if ["$EXCEPTION_EXISTS" != "[]"]; then
               echo "entrei"
