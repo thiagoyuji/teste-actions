@@ -28,11 +28,5 @@ echo "zonas_batch=$DEV_BATCH_ZONES" >> "$GITHUB_OUTPUT"
 FUNCIONALIDADES=$(jq -c '.funcionalidades' "$FILE_PATH")
 echo "funcionalidades=$FUNCIONALIDADES" >> "$GITHUB_OUTPUT"
 
-PROCESSOS_EXCECOES=$(jq -c '.processar_excecoes' "$FILE_PATH")
-if [ -z "$PROCESSOS_EXCECOES" ]; then
-  echo "excecoes=[]" >> "$GITHUB_OUTPUT"
-else
-  echo "excecoes=$PROCESSOS_EXCECOES" >> "$GITHUB_OUTPUT"
-fi
-
-
+PROCESSOS_EXCECOES=$(jq -c '.processar_excecoes // []' "$FILE_PATH")
+echo "excecoes=$PROCESSOS_EXCECOES" >> "$GITHUB_OUTPUT"
