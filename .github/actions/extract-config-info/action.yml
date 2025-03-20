@@ -39,6 +39,6 @@ runs:
         AREA=$(yq e '.area' test.yml)
         echo "Area: $AREA"
 
-        ZONAS=$(yq e '.zonas.dev.online[]' test.yml | jq -s '.')
+        ZONAS=$(yq e '.zonas.dev.online[]' test.yml | jq -s -c '.')
         echo "Zonas: $ZONAS"
       
