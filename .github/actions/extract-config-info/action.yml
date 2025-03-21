@@ -41,4 +41,8 @@ runs:
 
         ZONAS=$(yq e '.zonas.dev.online[]' test.yml | jq -s -c '.')
         echo "Zonas: $ZONAS"
+
+        FUNCIONALIDADES=$(yq e '.funcionalidades[]' test.yml | jq -s -c '.')
+        echo "Funcionalidades: $FUNCIONALIDADES"
+        
       
