@@ -39,7 +39,7 @@ runs:
         AREA=$(yq e '.area' test.yml)
         echo "Area: $AREA"
 
-        ZONAS=$(yq e '.zonas.dev.online[]' test.yml | jq -s -c '.')
+        ZONAS=$(yq e '.zonas.dev.online[]' test.yml | jq -R -s -c 'split("\n")[:-1])
         echo "Zonas: $ZONAS"
 
         FUNCIONALIDADES=$(yq e '.funcionalidades[]' test.yml | jq -R -s -c 'split("\n")[:-1]')
