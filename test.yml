@@ -5,6 +5,7 @@ zonas:
       - 1
       - 2
       - 3
+      - 1abc1
 funcionalidades:
   - "f1_teste"
   - f2_teste
